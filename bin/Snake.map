@@ -1,0 +1,93 @@
+Section          Base   Top    High   Length
+---------------- ------ ------ ------ -------
+.icon            D1A882 D1A99E           11Ch
+.init.libs       D1A99E D1A9F6            58h
+.libs            D1A9F6 D1AA2D            37h
+.init.clock      D1AA2D D1AA2D             0h
+.init.reruncheck D1AA2D D1AA2D             0h
+.init            D1AA2D D1AA52            25h
+.fini            D1AA52 D1AA86            34h
+.text            D1AA86 D1B0D0           64Ah
+.data            D1B0D0 D1B0E1            11h
+.rodata          D1B0E1 D1B152            71h
+.init_array      000000 000000             0h
+.ctors           000000 000000             0h
+.dtors           000000 000000             0h
+.fini_array      000000 000000             0h
+.bss             D052C6 D052C7 D13FD8      1h
+.header          D1A87F D1A882             3h
+
+Label                       Value
+-------------------------   ------
+___low_bss                = D052C6
+___len_bss                = 000001
+___heaptop                = D13FD8
+___heapbot                = D052C7
+___libs                   = D1A9F6
+___init_array_count       = 000000
+___ctors_count            = 000000
+___dtors_count            = 000000
+___fini_array_count       = 000000
+__stack                   = D1A87E
+__frameset                = D1AA86
+__frameset0               = D1AA94
+__iand                    = D1AA9F
+__idvrms                  = D1AAB8
+__idvrmu                  = D1AAE6
+__imulu                   = D1AAFE
+__ineg                    = D1AB2E
+__irems                   = D1AB37
+__ladd                    = D1AB3F
+__lmulu                   = D1AB45
+__ftol                    = 00027C
+__ftoul                   = 00027C
+__ltof                    = 000284
+__setflag                 = 000218
+__ultof                   = 000280
+_os_DisableHomeTextBuffer = D1ABA1
+_os_EnableHomeTextBuffer  = D1ABB3
+_random                   = D1ABC5
+__setstate                = D1AC23
+__state                   = D1B0D0
+_boot_GetDate             = 0005A8
+_boot_GetTime             = 0005B0
+_os_ClrLCD                = 02080C
+_os_HomeUp                = 020828
+_os_DrawStatusBar         = 021A3C
+_os_GetCSC                = 021D3C
+___isleap                 = D1AC33
+_mktime                   = D1AC6D
+_mktime.dpmt              = D1B0E1
+_time                     = D1ADDE
+_rand                     = D1AE5B
+_srand                    = D1AE68
+.missingappvar            = D1B105
+.libloadname              = D1B10A
+.libloadnamelen           = 000007
+.webaddress               = D1B112
+__start                   = D1AA2D
+___exithl                 = D1AA52
+skip._exit                = D1AA52
+skip.__Exit               = D1AA52
+skip._abort               = D1AA52
+_exit.sp                  = D1AA53
+_exit.flash_wait_states   = D1AA5D
+_main                     = D1AE70
+_start_draw               = D1AF9B
+_render                   = D1AFFF
+_game_draw                = D1B04C
+_isGame                   = D052C6
+_playerDirection          = D1B0E0
+_.str                     = D1B127
+_.str.1                   = D1B12E
+_.str.2                   = D1B148
+lib.LibLoad               = D1A9F6
+_#gfx_Begin               = D1AA09
+_#gfx_End                 = D1AA0D
+_#gfx_SetColor            = D1AA11
+_#gfx_FillScreen          = D1AA15
+_#gfx_SwapDraw            = D1AA19
+_#gfx_PrintStringXY       = D1AA1D
+_#gfx_FillCircle          = D1AA21
+_#gfx_FillRectangle       = D1AA25
+_#gfx_SetFontHeight       = D1AA29

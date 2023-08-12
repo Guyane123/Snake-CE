@@ -1,0 +1,27 @@
+	section .icon
+
+	jp	___prgm_init
+	db	$01
+	public ___icon
+___icon:
+	db	$10, $10
+	db	$FF, $FF, $FF, $FF, $FF, $FF, $FF, $86, $46, $46, $86, $FF, $FF, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FF, $FF, $FF, $FF, $B4, $66, $86, $8E, $8E, $FF, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FF, $FF, $FF, $FF, $B5, $8E, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FF, $FF, $FF, $FF, $D5, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FF, $FF, $D5, $D4, $EA, $EB, $D4, $D5, $FF, $FF, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FE, $EB, $EB, $E1, $E1, $E1, $E1, $E1, $EA, $FE, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $EB, $EB, $EB, $E1, $E1, $E1, $E1, $E1, $E1, $EA, $FF, $FF, $FF
+	db	$FF, $FF, $F4, $EB, $EB, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $F4, $FF, $FF
+	db	$FF, $FF, $EC, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $EC, $FF, $FF
+	db	$FF, $FF, $EB, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $EB, $FF, $FF
+	db	$FF, $FF, $EC, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $EC, $FF, $FF
+	db	$FF, $FF, $F4, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $F4, $FF, $FF
+	db	$FF, $FF, $FF, $EA, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $E1, $EA, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FE, $EA, $E1, $E1, $E1, $E1, $E1, $E1, $EA, $FE, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FF, $FF, $D5, $D4, $EB, $EB, $D4, $D5, $FF, $FF, $FF, $FF, $FF
+	db	$FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	public ___description
+___description:
+	db	"Snake game by Guyane", 0
+___prgm_init:
