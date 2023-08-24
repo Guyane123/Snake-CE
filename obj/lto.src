@@ -7,9 +7,9 @@ _main:
 	call	__frameset
 	ld	hl, 0
 	ld	de, 120
-	ld	(ix - 6), de
-	ld	de, 106
 	ld	(ix - 3), de
+	ld	de, 106
+	ld	(ix - 6), de
 	push	hl
 	call	_time
 	pop	de
@@ -41,80 +41,81 @@ BB0_1:
 	call	_os_GetCSC
 	or	a, a
 	jr	z, BB0_1
-	ld	iy, (_activeBuffer)
-	ld	(iy), 0
-	lea	hl, iy
-	inc	hl
+	ld	hl, (_activeBuffer)
+	ld	(hl), 0
+	push	hl
+	pop	iy
+	inc	iy
 	ld	bc, 153599
-	ex	de, hl
-	lea	hl, iy
+	lea	de, iy
 	ldir
-	lea	hl, iy
-	ld	de, _buffer1
-	or	a, a
-	sbc	hl, de
 	ld	hl, _buffer2
-	jr	z, BB0_4
-	ex	de, hl
-BB0_4:
 	ld	(_activeBuffer), hl
 	ld	a, 1
 	ld	(_isGame), a
-BB0_5:
+BB0_3:
 	or	a, a
-	jp	z, BB0_28
+	jp	z, BB0_32
 	call	_os_GetCSC
-	ld	e, a
-	ld	a, (_playerDirection)
-	ld	l, a
-	ld	a, e
 	cp	a, 4
-	jr	nz, BB0_9
-	ld	a, l
+	jr	nz, BB0_8
+	ld	a, (_playerDirection)
 	cp	a, 100
-	jr	z, BB0_9
+	jr	z, BB0_7
 	ld	a, 117
 	ld	(_playerDirection), a
-BB0_9:
+BB0_7:
+	ld	hl, (ix - 3)
+	inc	hl
+	ld	(ix - 3), hl
+BB0_8:
 	call	_os_GetCSC
-	ld	e, a
-	ld	a, (_playerDirection)
-	ld	l, a
-	ld	a, e
 	cp	a, 3
 	jr	nz, BB0_12
-	ld	a, l
+	ld	a, (_playerDirection)
 	cp	a, 108
-	jr	z, BB0_12
+	jr	z, BB0_11
 	ld	a, 114
 	ld	(_playerDirection), a
+BB0_11:
+	ld	hl, (ix - 6)
+	inc	hl
+	ld	(ix - 6), hl
 BB0_12:
 	call	_os_GetCSC
-	ld	e, a
-	ld	a, (_playerDirection)
-	ld	l, a
-	ld	a, e
 	cp	a, 1
-	jr	nz, BB0_15
-	ld	a, l
+	jr	nz, BB0_16
+	ld	a, (_playerDirection)
 	cp	a, 117
 	jr	z, BB0_15
 	ld	a, 100
 	ld	(_playerDirection), a
 BB0_15:
+	ld	hl, (ix - 3)
+	dec	hl
+	ld	(ix - 3), hl
+BB0_16:
 	call	_os_GetCSC
 	ld	l, a
 	ld	a, (_playerDirection)
 	ld	e, a
 	ld	a, l
 	cp	a, 2
-	jr	nz, BB0_17
+	jr	nz, BB0_20
 	ld	a, e
 	cp	a, 114
-	jr	nz, BB0_22
-BB0_17:
-	ld	iy, (ix - 3)
-	inc	iy
+	ld	e, 114
+	ld	iy, (ix - 6)
+	jr	z, BB0_19
+	ld	a, 108
+	ld	(_playerDirection), a
+	ld	e, a
+BB0_19:
+	dec	iy
+	jr	BB0_21
+BB0_20:
+	ld	iy, (ix - 6)
+BB0_21:
 	ld	a, e
 	rlc	a
 	sbc	hl, hl
@@ -126,40 +127,35 @@ BB0_17:
 	ld	de, 100
 	or	a, a
 	sbc	hl, de
-	jr	nz, BB0_19
-	ld	de, (ix - 6)
+	jr	nz, BB0_23
+	ld	de, (ix - 3)
 	dec	de
-	jr	BB0_24
-BB0_19:
+	jr	BB0_28
+BB0_23:
 	push	bc
 	pop	hl
 	ld	de, 108
 	or	a, a
 	sbc	hl, de
-	jr	z, BB0_23
+	jr	nz, BB0_25
+	dec	iy
+	jr	BB0_27
+BB0_25:
 	push	bc
 	pop	hl
 	ld	de, 114
 	or	a, a
 	sbc	hl, de
-	jr	nz, BB0_26
-	ld	de, 2
-	ld	iy, (ix - 3)
-	add	iy, de
-	ld	de, (ix - 6)
-	jr	BB0_24
-BB0_22:
-	ld	a, 108
-	ld	(_playerDirection), a
-BB0_23:
-	ld	de, (ix - 6)
-	ld	iy, (ix - 3)
-BB0_24:
+	jr	nz, BB0_30
+	inc	iy
+BB0_27:
+	ld	de, (ix - 3)
+BB0_28:
 	ld	hl, 1
 	push	hl
-	ld	(ix - 6), de
+	ld	(ix - 3), de
 	push	de
-	ld	(ix - 3), iy
+	ld	(ix - 6), iy
 	push	iy
 	call	_render
 	pop	hl
@@ -175,31 +171,31 @@ BB0_24:
 	ldir
 	call	_os_GetCSC
 	cp	a, 56
-	jr	z, BB0_30
+	jr	z, BB0_34
 	ld	a, (_isGame)
-	jp	BB0_5
-BB0_26:
+	jp	BB0_3
+BB0_30:
 	push	bc
 	pop	hl
 	ld	de, 117
 	or	a, a
 	sbc	hl, de
-	jr	nz, BB0_30
-	ld	de, (ix - 6)
+	jr	nz, BB0_34
+	ld	de, (ix - 3)
 	inc	de
-	jr	BB0_24
-BB0_28:
+	jr	BB0_28
+BB0_32:
 	call	_game_draw
 	call	_gfx_SwapDraw
-BB0_29:
+BB0_33:
 	call	_os_GetCSC
 	cp	a, 56
-	jr	nz, BB0_29
-	jr	BB0_31
-BB0_30:
+	jr	nz, BB0_33
+	jr	BB0_35
+BB0_34:
 	xor	a, a
 	ld	(_isGame), a
-BB0_31:
+BB0_35:
 	call	_gfx_End
 	or	a, a
 	sbc	hl, hl
@@ -306,7 +302,7 @@ BB2_4:
 _game_draw:
 	ld	hl, -3
 	call	__frameset
-	ld	hl, 70
+	ld	hl, -61
 	push	hl
 	call	_gfx_FillScreen
 	pop	hl
@@ -374,14 +370,8 @@ _gameOver:
 	ex	de, hl
 	lea	hl, iy
 	ldir
-	ld	de, _buffer1
-	lea	hl, iy
-	or	a, a
-	sbc	hl, de
-	jr	nz, BB4_2
-	ld	de, _buffer2
-BB4_2:
-	ld	(_activeBuffer), de
+	ld	hl, _buffer1
+	ld	(_activeBuffer), hl
 	ld	(_isGame), a
 	scf
 	sbc	hl, hl
@@ -480,6 +470,7 @@ _.str.3:
 	db	"SCORE: ", 0
 
 	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 6c61664110f888c0285ae4c48b150c9a7a4361bb)"
+	extern	_gfx_FillCircle
 	extern	__Unwind_SjLj_Register
 	extern	__frameset
 	extern	_srand
@@ -498,7 +489,6 @@ _.str.3:
 	extern	_gfx_End
 	extern	_os_GetCSC
 	extern	_gfx_PrintStringXY
-	extern	_gfx_FillCircle
 	extern	__frameset0
 	extern	_time
 	extern	_os_HomeUp
